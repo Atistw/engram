@@ -1,0 +1,16 @@
+# Obsidian workspace cache（機器特定，每次開啟都改）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace-mobile.json.bak
+.obsidian/workspace.json.bak
+
+# Obsidian 快取
+.obsidian/cache
+.obsidian/.obsidian.nosync
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# 排程 cron 執行 log
+_schedules/logs/

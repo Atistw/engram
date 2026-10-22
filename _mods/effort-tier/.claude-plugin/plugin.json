@@ -1,0 +1,1 @@
+{ "name": "effort-tier", "version": "0.2.0", "description": "Raise or lower the main loop's reasoning effort per prompt by local keyword rules; never changes the model, never calls an external service." }

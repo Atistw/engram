@@ -1,0 +1,2 @@
+# 一律 LF：shell 腳本遇到 CRLF 會壞（bash 報 invalid option）
+* text=auto eol=lf
