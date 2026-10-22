@@ -14,6 +14,12 @@ const MOTIVE =
 // 人事與決策類用語。單獨命中即算高判斷。
 const DIAG =
   /接班|繼任|人事診斷|人事衝突|多方衝突|升遷|離職|資遣|考核面談|績效面談|要不要(?:接|留|走|離開)|婉拒|接受(?:這個)?(?:職|任命|交辦)|越級|跳級/
+// 組織決策題：決策問法＋組織對象＋拆合動作同時出現，且對象與動作相隔 12 字內。不靠人名。
+const ORG_Q =
+  /拆不拆|分不分|合不合|要不要|該不該|應不應該|是否|怎麼(?:拆|切|分|整併|歸屬)|如何(?:拆|切分|整併|重組)/
+const ORG_OBJ = '組織|部門|事業單位|事業部|團隊|編制|員額'
+const ORG_ACT = '拆|分開|切分|合併|整併|重組|改組|獨立|劃歸|接管|分拆|歸到|歸給'
+const ORG_NEAR = new RegExp(`(?:${ORG_OBJ}).{0,12}(?:${ORG_ACT})|(?:${ORG_ACT}).{0,12}(?:${ORG_OBJ})`)
 // 純機械雜務。只在本輪開頭命中才降檔。
 const MECH = /格式整理|整理格式|改檔名|重新命名|更新\s?TASKS|寫\s?CHANGELOG|同步(?:索引|連結)/
 
@@ -52,7 +58,7 @@ const head = (t: string) => stripReminders(t).split('<pasted_content', 1)[0].tri
 
 const isHigh = (t: string, r: Rules) => {
   const h = head(t)
-  return (r.person !== null && r.person.test(h) && r.motive.test(h)) || r.diag.test(h)
+  return (r.person !== null && r.person.test(h) && r.motive.test(h)) || r.diag.test(h) || (ORG_Q.test(h) && ORG_NEAR.test(h))
 }
 const isPointer = (t: string) => {
   const h = head(t).trim()

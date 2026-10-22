@@ -1,0 +1,6 @@
+{
+  "name": "todo-pane",
+  "version": "0.3.0",
+  "description": "把知識庫 TASKS.md 的 🎯 我要做、👀 我在追與近期日程顯示在 Claude 介面側邊窗格（只讀）",
+  "types": "./types/index.d.ts"
+}

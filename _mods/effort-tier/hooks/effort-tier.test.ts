@@ -61,6 +61,15 @@ test('預設：一般題不動', async ($, on) => {
 test('預設：沒設定人物時，人名加動機詞不算高判斷', async ($, on) => {
   expect(await seen($, on, '王經理為什麼突然改口，背後的用意是什麼', 'medium')).toBe('medium')
 })
+test('預設：組織決策題（決策問法＋組織對象＋拆合動作）抬到 high', async ($, on) => {
+  expect(await seen($, on, '這兩個部門該不該合併成一個事業單位？', 'medium')).toBe('high')
+})
+test('預設：只有組織詞沒有決策問法不算', async ($, on) => {
+  expect(await seen($, on, '幫我整理部門合併後的通訊錄格式', 'medium')).toBe('medium')
+})
+test('預設：組織對象與拆合動作相隔太遠不算', async ($, on) => {
+  expect(await seen($, on, '要不要先問團隊成員的意見，下週會議再說，至於資料表要不要拆開', 'medium')).toBe('medium')
+})
 test('subagent 不動', async ($, on) => {
   expect(await seen($, on, '要不要接這個職位', 'medium', { agentId: 'agent-1' })).toBe('medium')
 })
